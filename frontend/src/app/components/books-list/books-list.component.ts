@@ -19,7 +19,7 @@ export class BooksListComponent implements OnInit {
   }
 
   selectedStatus: string = '';
-
+  searchTerm: string = '';
   currentPage: Page<Book> = { content: [], totalElements: 0, number: 0, totalPages: 0 };
 
   ngOnInit(): void {
@@ -28,6 +28,15 @@ export class BooksListComponent implements OnInit {
 
   applyFilter() {
     this.dataSource.filter = this.selectedStatus;
+  }
+  applySearch() {
+    this.dataSource.filterPredicate = (data: Book, filter: string) => {
+      return data.title.toLowerCase().includes(filter) ||
+        data.author.toLowerCase().includes(filter) ||
+        data.genre.toLowerCase().includes(filter) ||
+        data.year.toString().includes(filter)
+    };
+    this.dataSource.filter = this.searchTerm.trim().toLowerCase();
   }
 
   loadPage(pageRequest: Partial<PageRequest>) {
@@ -43,7 +52,6 @@ export class BooksListComponent implements OnInit {
         pageIndex: this.currentPage.number - 1,
         pageSize: 100
       };
-
       this.loadPage(pageRequest);
     }
   }
@@ -54,7 +62,6 @@ export class BooksListComponent implements OnInit {
         pageIndex: this.currentPage.number + 1,
         pageSize: 100
       };
-      
       this.loadPage(pageRequest);
     }
   }
