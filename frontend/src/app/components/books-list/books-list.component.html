@@ -51,6 +51,16 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let book; columns: displayedColumns;"></tr>
     </table>
+    <div style="display: flex; justify-content: space-between;">
+      <button mat-icon-button color="primary" (click)="onLeftArrowClick()" [disabled]="currentPage.number === 0">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+      <div>Page {{currentPage.number + 1}} of {{currentPage.totalPages}}</div>
+      <button mat-icon-button color="primary" (click)="onRightArrowClick()"
+              [disabled]="currentPage.number === currentPage.totalPages - 1">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
   </mat-card>
 </div>
 
