@@ -32,7 +32,7 @@ To get Angular app up and running you need to:
 6. Once development server is running, open app at http://localhost:4200. If you can see a list of books then it means that you have sucessfully set up and run the application
 7. Start coding :)
 
-##General guidelines
+## General guidelines
 
 * Tasks don't have to be completed in order.
 * Try to complete as many as possible. 
@@ -52,9 +52,9 @@ in your solution using comments. This helps us distinguish code written by you.
 
 If you have any questions, please reach out without hesitation. Best of luck!
 
-##Development tasks
+## Development tasks
 
-- [ ] Using backend api endpoint /getBooks, implement table of books view
+- [x] Using backend api endpoint /getBooks, implement table of books view
 - [ ] Using backend api endpoint /getCheckouts, also implement the checkouts view. Suppport paging and sorting for both views
 - [ ] Implement individual book and checkout view, support basic CRUD operations, implement checking out and returning books
 - [ ] Implement searching for books using freetext criteria
@@ -63,7 +63,7 @@ If you have any questions, please reach out without hesitation. Best of luck!
 - [ ] Add modal confirmation dialogues when deleting or checking out books
 - [ ] Implement a user-friendly way to display late checkouts
 
-#####Bonus tasks:
+##### Bonus tasks:
 - [ ] Implement advanced search form for books, where user can specify and combine different criterias (title, author year etc)
 - [ ] Add UI and backend tests 
 - [ ] Add support for multiple languages
