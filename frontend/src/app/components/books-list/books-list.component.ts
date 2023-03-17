@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
-import { Observable } from 'rxjs';
-import { Page } from '../../models/page';
 import { Book } from '../../models/book';
 import {MatTableDataSource} from "@angular/material/table";
 
@@ -19,11 +17,16 @@ export class BooksListComponent implements OnInit {
   ) {
   }
 
+  selectedStatus: string = '';
+
   ngOnInit(): void {
-    // TODO this observable should emit books taking into consideration pagination, sorting and filtering options.
     this.bookService.getBooks({}).subscribe((books) => {
       this.dataSource.data = books.content;
     });
+  }
+
+  applyFilter() {
+    this.dataSource.filter = this.selectedStatus;
   }
   displayedColumns: string[] = ['title', 'author', 'genre', 'year', 'added', 'checkOutCount', 'status', 'dueDate', 'comment'];
 }
