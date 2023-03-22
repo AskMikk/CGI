@@ -1,1 +1,17 @@
-<pre>{{book$ | async | json}}</pre>
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ (book$ | async)?.title }}</mat-card-title>
+      <mat-card-subtitle class="author-name">{{ (book$ | async)?.author }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Genre:</strong> {{ (book$ | async)?.genre }}</p>
+      <p><strong>Year:</strong> {{ (book$ | async)?.year }}</p>
+      <p><strong>Added:</strong> {{ (book$ | async)?.added }}</p>
+      <p><strong>Check Out Count:</strong> {{ (book$ | async)?.checkOutCount }}</p>
+      <p><strong>Status:</strong> {{ (book$ | async)?.status }}</p>
+      <p><strong>Due Date:</strong> {{ (book$ | async)?.dueDate }}</p>
+      <p><strong>Comment:</strong> {{ (book$ | async)?.comment }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

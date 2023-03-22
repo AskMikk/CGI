@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
-import {MatTableDataSource} from "@angular/material/table";
-import {Page, PageRequest} from "../../models/page";
+import { MatTableDataSource } from "@angular/material/table";
+import { Page, PageRequest } from '../../models/page';
 
 @Component({
   selector: 'app-books-list',
@@ -15,8 +15,7 @@ export class BooksListComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-  ) {
-  }
+  ) {}
 
   selectedStatus: string = '';
   searchTerm: string = '';

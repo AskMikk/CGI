@@ -1,0 +1,14 @@
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> <strong>Title:</strong> {{ (checkout$ | async)?.borrowedBook?.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <br>
+      <p><strong>Borrowed by: </strong>{{ (checkout$ | async)?.borrowerFirstName }} {{ (checkout$ | async)?.borrowerLastName }}</p>
+      <p><strong>Checked Out Date:</strong> {{ (checkout$ | async)?.checkedOutDate }}</p>
+      <p><strong>Due Date:</strong> {{ (checkout$ | async)?.dueDate }}</p>
+      <p><strong>Returned Date:</strong> {{ (checkout$ | async)?.returnedDate }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

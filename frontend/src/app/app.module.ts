@@ -9,21 +9,27 @@ import { BooksListComponent } from './components/books-list/books-list.component
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
+import {CheckoutListComponent} from "./components/checkout-list/checkout-list.component";
+import {CheckOutDetailComponent} from "./components/checkout-detail/checkout-detail.component";
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksListComponent,
-    BookDetailComponent
+    BookDetailComponent,
+    CheckoutListComponent,
+    CheckOutDetailComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
