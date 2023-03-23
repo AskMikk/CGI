@@ -4,6 +4,9 @@ import { MatSort, Sort } from '@angular/material/sort';
 import {Page, PageRequest} from "../../models/page";
 import {CheckOut} from "../../models/checkout";
 import {CheckOutService} from "../../services/checkout.service";
+import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ReturnDialogComponent} from "../return-dialog/return-dialog.component";
 
 @Component({
   selector: 'app-checkout-list',
@@ -13,9 +16,12 @@ import {CheckOutService} from "../../services/checkout.service";
 export class CheckoutListComponent implements OnInit {
 
   dataSource = new MatTableDataSource<CheckOut>();
+  deleteDialogRef!: MatDialogRef<DeleteDialogComponent>;
+  returnDialogRef!: MatDialogRef<ReturnDialogComponent>;
 
   constructor(
     private checkoutService: CheckOutService,
+    public dialog: MatDialog
   ) {}
 
   selectedStatus: string = '';
@@ -119,6 +125,33 @@ export class CheckoutListComponent implements OnInit {
     const dueDate = new Date(date);
     const today = new Date();
     return dueDate.getTime() < today.getTime();
+  }
+
+
+  openDeleteDialog(checkoutID: string) {
+    this.deleteDialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        checkoutID: checkoutID
+      }
+    });
+    this.deleteDialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        this.deleteCheckout(checkoutID);
+      }
+    });
+  }
+
+  openReturnDialog(checkoutID: string) {
+    this.returnDialogRef = this.dialog.open(ReturnDialogComponent, {
+      data: {
+        checkoutID: checkoutID
+      }
+    });
+    this.returnDialogRef.afterClosed().subscribe(result => {
+      if (result === 'return') {
+        this.returnBook(checkoutID);
+      }
+    });
   }
 }
 

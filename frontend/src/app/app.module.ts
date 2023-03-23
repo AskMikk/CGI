@@ -13,6 +13,8 @@ import {CheckoutListComponent} from "./components/checkout-list/checkout-list.co
 import {CheckOutDetailComponent} from "./components/checkout-detail/checkout-detail.component";
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSortModule} from "@angular/material/sort";
+import {DeleteDialogComponent} from "./components/delete-dialog/delete-dialog.component";
+import {ReturnDialogComponent} from "./components/return-dialog/return-dialog.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {MatSortModule} from "@angular/material/sort";
     BooksListComponent,
     BookDetailComponent,
     CheckoutListComponent,
-    CheckOutDetailComponent
+    CheckOutDetailComponent,
+    DeleteDialogComponent,
+    ReturnDialogComponent
   ],
   imports: [
     BrowserModule,

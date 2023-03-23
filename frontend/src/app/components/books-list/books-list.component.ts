@@ -4,7 +4,9 @@ import { Book } from '../../models/book';
 import { MatTableDataSource } from "@angular/material/table";
 import { Page, PageRequest } from '../../models/page';
 import { MatSort, Sort } from '@angular/material/sort';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-books-list',
@@ -14,16 +16,15 @@ import {Router} from "@angular/router";
 export class BooksListComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Book>();
+  deleteDialogRef!: MatDialogRef<DeleteDialogComponent>;
 
   constructor(
     private bookService: BookService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   selectedStatus: string = '';
-
-  today: Date = new Date();
-
   searchTerm: string = '';
   currentPage: Page<Book> = { content: [], totalElements: 0, number: 0, totalPages: 0 };
 
@@ -74,6 +75,7 @@ export class BooksListComponent implements OnInit {
   displayedColumns: string[] = ['title', 'author', 'genre', 'year', 'added', 'checkOutCount', 'status', 'dueDate', 'comment', 'actions'];
 
   // https://www.htmlgoodies.com/javascript/custom-sort-javascript-tables/
+
   sortData(sort: Sort) {
     const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
@@ -101,6 +103,7 @@ export class BooksListComponent implements OnInit {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
+
   deleteBook(bookId: string) {
     this.bookService.deleteBook(bookId).subscribe(() => {
       const pageRequest: Partial<PageRequest> = {
@@ -115,5 +118,17 @@ export class BooksListComponent implements OnInit {
     const dueDate = new Date(date);
     const today = new Date();
     return dueDate.getTime() < today.getTime();
+  }
+  openDeleteDialog(bookId: string) {
+    this.deleteDialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        bookId: bookId
+      }
+    });
+    this.deleteDialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        this.deleteBook(bookId);
+      }
+    });
   }
 }
