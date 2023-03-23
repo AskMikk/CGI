@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -37,5 +38,11 @@ public class CheckOutController {
     public ResponseEntity<String> deleteCheckOut(@RequestParam(value = "checkOutId") UUID checkOutId) {
         checkOutService.deleteCheckOut(checkOutId);
         return ResponseEntity.ok("");
+    }
+
+    @PutMapping(value = "returnBook")
+    public ResponseEntity<String> returnBook(@RequestParam(value = "checkOutId") UUID checkOutId) {
+        checkOutService.returnBook(checkOutId);
+        return new ResponseEntity<>("", HttpStatus.OK);
     }
 }

@@ -27,9 +27,6 @@ export class CheckoutListComponent implements OnInit {
     this.loadPage({pageIndex: 0, pageSize: 100});
   }
 
-  applyFilter() {
-    this.dataSource.filter = this.selectedStatus;
-  }
 
   applySearch() {
     this.dataSource.filterPredicate = (data: CheckOut, filter: string) => {
@@ -68,7 +65,7 @@ export class CheckoutListComponent implements OnInit {
     }
   }
 
-  displayedColumns: string[] = ['borrowerBookTitle','borrowerFirstName', 'borrowerLastName', 'checkedOutDate', 'dueDate', 'returnedDate'];
+  displayedColumns: string[] = ['borrowerBookTitle', 'borrowerFirstName', 'borrowerLastName', 'checkedOutDate', 'dueDate', 'returnedDate', 'actions'];
 
 
 
@@ -96,4 +93,15 @@ export class CheckoutListComponent implements OnInit {
   private compare(a: string | number, b: string |number, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
+
+  returnBook(checkOutId: string) {
+    this.checkoutService.returnBook(checkOutId).subscribe(() => {
+      const pageRequest: Partial<PageRequest> = {
+        pageIndex: this.currentPage.number,
+        pageSize: 100
+      };
+      this.loadPage(pageRequest);
+    });
+  }
+
 }
