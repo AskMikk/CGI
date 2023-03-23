@@ -104,4 +104,17 @@ export class CheckoutListComponent implements OnInit {
     });
   }
 
+
+  deleteCheckout(checkOutId: string) {
+      this.checkoutService.deleteCheckOut(checkOutId).subscribe(() => {
+        const pageRequest: Partial<PageRequest> = {
+          pageIndex: this.currentPage.number,
+          pageSize: 100
+        };
+        this.loadPage(pageRequest);
+      });
+    }
+
 }
+
+
