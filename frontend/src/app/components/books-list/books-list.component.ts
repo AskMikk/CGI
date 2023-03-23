@@ -21,6 +21,9 @@ export class BooksListComponent implements OnInit {
   ) {}
 
   selectedStatus: string = '';
+
+  today: Date = new Date();
+
   searchTerm: string = '';
   currentPage: Page<Book> = { content: [], totalElements: 0, number: 0, totalPages: 0 };
 
@@ -106,5 +109,11 @@ export class BooksListComponent implements OnInit {
       };
       this.loadPage(pageRequest);
     });
+  }
+
+  isOverdue(date: string): boolean {
+    const dueDate = new Date(date);
+    const today = new Date();
+    return dueDate.getTime() < today.getTime();
   }
 }

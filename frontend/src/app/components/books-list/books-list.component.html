@@ -48,7 +48,7 @@
       </ng-container>
       <ng-container matColumnDef="dueDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Due Date</th>
-        <td mat-cell *matCellDef="let book">{{book.dueDate}}</td>
+        <td mat-cell *matCellDef="let book" [ngStyle]="{color: isOverdue(book.dueDate) ? 'red' : 'inherit'}">{{book.dueDate}}</td>
       </ng-container>
       <ng-container matColumnDef="comment">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Comment</th>

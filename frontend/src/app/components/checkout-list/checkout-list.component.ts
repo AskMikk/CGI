@@ -115,6 +115,11 @@ export class CheckoutListComponent implements OnInit {
       });
     }
 
+  isOverdue(date: string): boolean {
+    const dueDate = new Date(date);
+    const today = new Date();
+    return dueDate.getTime() < today.getTime();
+  }
 }
 
 
