@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
 import {Page, PageRequest} from "../../models/page";
 import {CheckOut} from "../../models/checkout";
 import {CheckOutService} from "../../services/checkout.service";
@@ -69,4 +70,30 @@ export class CheckoutListComponent implements OnInit {
 
   displayedColumns: string[] = ['borrowerBookTitle','borrowerFirstName', 'borrowerLastName', 'checkedOutDate', 'dueDate', 'returnedDate'];
 
+
+
+  // https://www.htmlgoodies.com/javascript/custom-sort-javascript-tables/
+
+  sortData(sort: Sort) {
+    const data = this.dataSource.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.dataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'borrowerBookTitle': return this.compare(a.borrowedBook.title, b.borrowedBook.title, isAsc);
+        case 'borrowerFirstName': return this.compare(a.borrowerFirstName, b.borrowerFirstName, isAsc);
+        case 'borrowerLastName': return this.compare(a.borrowerLastName, b.borrowerLastName, isAsc);
+        case 'checkedOutDate': return this.compare(a.checkedOutDate, b.checkedOutDate, isAsc);
+        case 'dueDate': return this.compare(a.dueDate, b.dueDate, isAsc);
+        default: return 0;
+      }
+    });
+  }
+  private compare(a: string | number, b: string |number, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
 }

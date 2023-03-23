@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 import {CheckoutListComponent} from "./components/checkout-list/checkout-list.component";
 import {CheckOutDetailComponent} from "./components/checkout-detail/checkout-detail.component";
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
 import { MatTableDataSource } from "@angular/material/table";
 import { Page, PageRequest } from '../../models/page';
+import { MatSort, Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-books-list',
@@ -66,4 +67,33 @@ export class BooksListComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['title', 'author', 'genre', 'year', 'added', 'checkOutCount', 'status', 'dueDate', 'comment'];
+
+  // https://www.htmlgoodies.com/javascript/custom-sort-javascript-tables/
+
+  sortData(sort: Sort) {
+    const data = this.dataSource.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.dataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'title': return this.compare(a.title, b.title, isAsc);
+        case 'author': return this.compare(a.author, b.author, isAsc);
+        case 'genre': return this.compare(a.genre, b.genre, isAsc);
+        case 'year': return this.compare(a.year, b.year, isAsc);
+        case 'added': return this.compare(a.added, b.added, isAsc);
+        case 'checkOutCount': return this.compare(a.checkOutCount, b.checkOutCount, isAsc);
+        case 'status': return this.compare(a.status, b.status, isAsc);
+        case 'dueDate': return this.compare(a.dueDate, b.dueDate, isAsc);
+        default: return 0;
+      }
+    });
+  }
+
+  private compare(a: string | number, b: string | number, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
 }
