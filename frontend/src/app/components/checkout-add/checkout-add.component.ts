@@ -57,7 +57,6 @@ export class CheckoutAddComponent implements OnInit {
           dueDate: checkOutData.date.toISOString(),
           returnedDate: null,
         };
-        console.log(checkOut)
         this.checkOutService.saveCheckOut(checkOut).subscribe(response => {
           console.log('CheckOut saved successfully', response);
         }, error => {
