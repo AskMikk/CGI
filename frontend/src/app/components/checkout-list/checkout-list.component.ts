@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort } from '@angular/material/sort';
-import {Page, PageRequest} from "../../models/page";
-import {CheckOut} from "../../models/checkout";
-import {CheckOutService} from "../../services/checkout.service";
-import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {ReturnDialogComponent} from "../return-dialog/return-dialog.component";
+import { Sort } from '@angular/material/sort';
+import { Page, PageRequest } from "../../models/page";
+import { CheckOut } from "../../models/checkout";
+import { CheckOutService } from "../../services/checkout.service";
+import { DeleteDialogComponent } from "../delete-dialog/delete-dialog.component";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { ReturnDialogComponent } from "../return-dialog/return-dialog.component";
 
 @Component({
   selector: 'app-checkout-list',
@@ -24,7 +24,6 @@ export class CheckoutListComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  selectedStatus: string = '';
   searchTerm: string = '';
   currentPage: Page<CheckOut> = { content: [], totalElements: 0, number: 0, totalPages: 0 };
 

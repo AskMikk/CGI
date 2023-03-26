@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
 import { Observable } from 'rxjs';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CheckOut } from '../../models/checkout';
 import { CheckOutService } from '../../services/checkout.service';
 import { v4 } from 'uuid';
@@ -18,6 +18,7 @@ import { v4 } from 'uuid';
 export class CheckoutAddComponent implements OnInit {
   book$!: Observable<Book>;
   userForm!: FormGroup;
+  minDate = new Date();
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,11 @@ export class CheckoutAddComponent implements OnInit {
     });
   }
 
+  dateFilter = (date: Date | null): boolean => {
+    if (!date) return false;
+    return date >= this.minDate;
+  };
+
   onSubmit() {
     if (this.userForm.valid) {
       const checkOutData = this.userForm.value;
@@ -47,7 +53,7 @@ export class CheckoutAddComponent implements OnInit {
           borrowerFirstName: checkOutData.firstName,
           borrowerLastName: checkOutData.lastName,
           borrowedBook: book,
-          checkedOutDate: '',
+          checkedOutDate: new Date().toISOString(),
           dueDate: checkOutData.date.toISOString(),
           returnedDate: null,
         };

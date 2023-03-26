@@ -16,6 +16,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {DeleteDialogComponent} from "./components/delete-dialog/delete-dialog.component";
 import {ReturnDialogComponent} from "./components/return-dialog/return-dialog.component";
 import {CheckoutAddComponent} from "./components/checkout-add/checkout-add.component";
+import {FavoritesComponent} from "./components/favorites/favorites.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {CheckoutAddComponent} from "./components/checkout-add/checkout-add.compo
     CheckOutDetailComponent,
     DeleteDialogComponent,
     ReturnDialogComponent,
-    CheckoutAddComponent
+    CheckoutAddComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,

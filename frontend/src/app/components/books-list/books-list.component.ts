@@ -3,7 +3,7 @@ import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
 import { MatTableDataSource } from "@angular/material/table";
 import { Page, PageRequest } from '../../models/page';
-import { MatSort, Sort } from '@angular/material/sort';
+import { Sort } from '@angular/material/sort';
 import { Router } from "@angular/router";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
@@ -134,5 +134,25 @@ export class BooksListComponent implements OnInit {
         this.deleteBook(bookId);
       }
     });
+  }
+
+  addToFavorites(book: Book) {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (!favorites.some((b: Book) => b.id === book.id)) {
+      favorites.push(book);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+  }
+
+  isInFavorites(bookId: string): boolean {
+    const books = JSON.parse(localStorage.getItem('favorites') || '[]');
+    return books.some((book: Book) => book.id === bookId);
+  }
+
+
+  removeFromFavorites(bookId: string): void {
+    const books = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const updatedBooks = books.filter((book: Book) => book.id !== bookId);
+    localStorage.setItem('favorites', JSON.stringify(updatedBooks));
   }
 }
