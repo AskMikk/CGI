@@ -119,6 +119,10 @@ export class BooksListComponent implements OnInit {
     const today = new Date();
     return dueDate.getTime() < today.getTime();
   }
+
+  addCheckount(bookId: string) {
+    this.router.navigate(['/checkout/add', bookId]);
+  }
   openDeleteDialog(bookId: string) {
     this.deleteDialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {

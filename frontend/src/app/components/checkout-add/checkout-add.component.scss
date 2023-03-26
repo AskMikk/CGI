@@ -1,0 +1,21 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top:  0.5em;
+}
+
+button[type="submit"] {
+  width: calc(100% - 32px);
+  max-width: 400px;
+}
+
+.author-name {
+  margin-bottom: 1em;
+  justify-content: center;
+}

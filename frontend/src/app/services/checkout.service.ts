@@ -30,8 +30,8 @@ export class CheckOutService {
     return this.http.get<CheckOut>(url, {params});
   }
 
-    saveCheckOut(checkOut: { borrowerFirstName: string; borrowedBook: any; borrowerLastName: string }): Observable<void> {
-    const url = this.baseUrl + '/checkout';
+  saveCheckOut(checkOut: CheckOut): Observable<void> {
+    const url = this.baseUrl + '/saveCheckout';
     return this.http.post<void>(url, checkOut);
   }
 

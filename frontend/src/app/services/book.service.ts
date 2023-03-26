@@ -41,4 +41,12 @@ export class BookService {
     return this.http.delete<void>(url, {params});
   }
 
+  checkoutBook(bookId: string, dueDate: string): Observable<void> {
+    const url = this.baseUrl + '/checkoutBook';
+    const params = new HttpParams()
+      .set('bookId', bookId)
+      .set('dueDate', dueDate);
+    return this.http.put<void>(url, {}, {params});
+  }
+
 }

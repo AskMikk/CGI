@@ -5,9 +5,12 @@ import com.cgi.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
@@ -36,5 +39,11 @@ public class BookController {
     public ResponseEntity<String> deleteBook(@RequestParam(value = "bookId") UUID bookId) {
         bookService.deleteBook(bookId);
         return ResponseEntity.ok("");
+    }
+
+    @PutMapping(value = "checkoutBook")
+    public ResponseEntity<String> returnBook(@RequestParam(value = "bookId") UUID bookId, @RequestParam(value = "dueDate") String date) {
+        bookService.checkoutBook(bookId, date);
+        return new ResponseEntity<>("", HttpStatus.OK);
     }
 }

@@ -46,7 +46,6 @@ public class CheckOutService {
         checkOut.setReturnedDate(LocalDate.now());
         Book book = checkOut.getBorrowedBook();
         book.setStatus(BookStatus.RETURNED);
-        book.setCheckOutCount(book.getCheckOutCount() + 1);
         book.setDueDate(null);
         checkOutRepository.save(checkOut);
     }

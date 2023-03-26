@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatSortModule} from "@angular/material/sort";
 import {DeleteDialogComponent} from "./components/delete-dialog/delete-dialog.component";
 import {ReturnDialogComponent} from "./components/return-dialog/return-dialog.component";
+import {CheckoutAddComponent} from "./components/checkout-add/checkout-add.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {ReturnDialogComponent} from "./components/return-dialog/return-dialog.co
     CheckoutListComponent,
     CheckOutDetailComponent,
     DeleteDialogComponent,
-    ReturnDialogComponent
+    ReturnDialogComponent,
+    CheckoutAddComponent
   ],
   imports: [
     BrowserModule,

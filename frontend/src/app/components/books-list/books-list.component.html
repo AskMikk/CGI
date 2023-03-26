@@ -57,8 +57,11 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let book">
-          <button mat-icon-button color="warn" (click)="openDeleteDialog(book.id)">
+          <button *ngIf="!book.dueDate" mat-icon-button color="warn" (click)="openDeleteDialog(book.id)">
             <mat-icon>delete</mat-icon>
+          </button>
+          <button *ngIf="!book.dueDate" mat-icon-button color="primary" (click)="addCheckount(book.id)">
+            <mat-icon>chevron_right</mat-icon>
           </button>
         </td>
       </ng-container>
